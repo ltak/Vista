@@ -1,7 +1,7 @@
 # For more information about this configuration visit
 # https://github.com/fastlane/scan#scanfile
 
-workspace "Apps/Vista/Vista.xcodeproj"
+project "Apps/Vista/Vista.xcodeproj"
 scheme "Vista"
 sdk "iphonesimulator"
 device "iPhone 16"
