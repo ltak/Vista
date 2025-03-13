@@ -7,7 +7,7 @@
 
 import CoreLocation
 
-struct LatLon {
+struct Point {
     var lat: CLLocationDegrees
     var lon: CLLocationDegrees
 }

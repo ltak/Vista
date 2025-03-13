@@ -6,6 +6,6 @@
 //
 
 struct Rect {
-    var ne: LatLon
-    var sw: LatLon
+    var ne: Point
+    var sw: Point
 }
