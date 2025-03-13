@@ -9,7 +9,14 @@ import SwiftUI
 import MapKit
 
 struct ContentView: View {
+    
+    init() {
+        // Set tab bar background color
+        UITabBar.appearance().backgroundColor = UIColor.systemGray6
+    }
+    
     var body: some View {
+        
         TabView {
             // First Tab - Map View
             MapView()
