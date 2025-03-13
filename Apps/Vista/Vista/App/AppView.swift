@@ -21,16 +21,21 @@ struct ContentView: View {
             // First Tab - Map View
             MapView()
                 .tabItem {
-                    Image(systemName: "map.fill") // Tab icon
-                    Text("Map") // Tab label
+                    Image(systemName: "magnifyingglass") // Tab icon
                 }
 
             // Second Tab - Example: a Text View
+            PostView()
+                .tabItem {
+                    Image(systemName: "photo") // Tab icon
+                }
+            
+            // Third Tab - Example: a Text View
             Text("Other Tab")
                 .tabItem {
-                    Image(systemName: "star.fill") // Tab icon
-                    Text("Other") // Tab label
+                    Image(systemName: "person.crop.circle") // Tab icon\
                 }
+            
         }
     }
 }
