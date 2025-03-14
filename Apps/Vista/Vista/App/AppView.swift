@@ -25,7 +25,7 @@ struct ContentView: View {
                 }
 
             // Second Tab - Example: a Text View
-            PostView()
+            PhotoUploadView()
                 .tabItem {
                     Image(systemName: "photo") // Tab icon
                 }
