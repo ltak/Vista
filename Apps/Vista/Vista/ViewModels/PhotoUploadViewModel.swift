@@ -4,34 +4,27 @@
 //
 //  Created by Lucas Takatori on 3/13/25.
 //
-
 import SwiftUI
 import Swinject
 
-class PhotoUploadViewModel: ObservableObject {
-    @Inject var repository: ImageRepository
+
+class PhotoGalleryViewModel: ObservableObject {
+    @Inject private var repository: ImageRepository
     @Published var photos: [PhotoItem] = []
-    @Published var isAuthorized = false
+    @Published var selectedPhoto: PhotoItem?
 
     init() {
-        Task {
-            await checkAuthorization()
-        }
+        Task { await loadPhotos() }
     }
 
-    // Check if the app has access to the photo library
-    func checkAuthorization() async {
-        isAuthorized = await repository.requestPhotoLibraryAccess()
-        if isAuthorized {
-            await loadPhotos()
-        }
-    }
-
-    // Load all photos asynchronously
     func loadPhotos() async {
         let fetchedPhotos = await repository.fetchAllPhotos()
         DispatchQueue.main.async {
             self.photos = fetchedPhotos
         }
+    }
+
+    func selectPhoto(_ photo: PhotoItem) {
+        selectedPhoto = photo
     }
 }

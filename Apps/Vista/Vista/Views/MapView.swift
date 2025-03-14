@@ -4,18 +4,29 @@
 //
 //  Created by Lucas Takatori on 3/12/25.
 //
-
-import SwiftUICore
-import _MapKit_SwiftUI
+import SwiftUI
+import MapKit
 
 struct MapView: View {
-    @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194), // San Francisco
-        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-    )
-    
-    var body: some View {
-        Map(coordinateRegion: $region)
-            .edgesIgnoringSafeArea(.all) // To make the map cover the full screen
+    var coordinate: CLLocationCoordinate2D? = nil
+
+    @State private var region: MKCoordinateRegion
+
+    init(coordinate: CLLocationCoordinate2D? = nil) {
+        _region = State(initialValue: MKCoordinateRegion(
+            center: coordinate ?? CLLocationCoordinate2D(),
+            span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        ))
     }
+
+    var body: some View {
+        Map(coordinateRegion: $region, annotationItems: [MapPinItem(coordinate: coordinate ?? CLLocationCoordinate2D(latitude: 0,longitude: 0))]) { pin in
+            MapMarker(coordinate: pin.coordinate, tint: .red)
+        }
+    }
+}
+
+struct MapPinItem: Identifiable {
+    let id = UUID()
+    let coordinate: CLLocationCoordinate2D
 }
