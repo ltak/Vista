@@ -13,3 +13,15 @@ let container = Container()
 func setupDependencies() {
     container.register(ImageRepository.self) { _ in PhotoLibraryRepository() }
 }
+
+@propertyWrapper
+struct Inject<T> {
+    let wrappedValue: T
+
+    init() {
+        guard let resolvedValue = container.resolve(T.self) else {
+            fatalError("Dependency of type \(T.self) could not be resolved!")
+        }
+        self.wrappedValue = resolvedValue
+    }
+}
