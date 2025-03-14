@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A0E494FD2D83F81800E50615 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = A0E494FC2D83F81800E50615 /* Swinject */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		A02819E62D81621800B0C706 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0E494FD2D83F81800E50615 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +130,7 @@
 			);
 			name = Vista;
 			packageProductDependencies = (
+				A0E494FC2D83F81800E50615 /* Swinject */,
 			);
 			productName = Vista;
 			productReference = A02819D42D81621800B0C706 /* Vista.app */;
@@ -620,6 +626,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A0E494FC2D83F81800E50615 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0281A0F2D8283BD00B0C706 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A02819CC2D81621800B0C706 /* Project object */;
 }

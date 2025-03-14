@@ -6,9 +6,13 @@
 //
 
 import SwiftUI
+import Swinject
 
 @main
 struct VistaApp: App {
+    init() {
+        setupDependencies()
+    }
     var body: some Scene {
         WindowGroup {
             ContentView()
