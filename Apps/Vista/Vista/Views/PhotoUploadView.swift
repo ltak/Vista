@@ -10,12 +10,13 @@ import Photos
 
 struct PhotoUploadView: View {
     @StateObject private var viewModel = PhotoGalleryViewModel()
+    @State private var navigateToPostScreen = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             // Display MapView for the selected photo
             VStack {
-
+                
                 // Map View
                 ZStack {
                     MapView()
@@ -48,7 +49,25 @@ struct PhotoUploadView: View {
                     }
                     .padding()
                 }
-                .navigationTitle("Post Photo")
+                
+                // Continue Button to Post Screen
+                NavigationLink(
+                    value: viewModel.selectedPhoto
+                ) {
+                    Text("Continue")
+                        .font(.headline)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(viewModel.selectedPhoto == nil ? Color.gray : Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        .padding()
+                }
+                .disabled(viewModel.selectedPhoto == nil)
+            }
+            .navigationTitle("Select Photo")
+            .navigationDestination(for: PhotoItem.self) { photo in
+                PhotoUploadDescriptionView(photo: photo)
             }
         }
     }
