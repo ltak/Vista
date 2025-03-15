@@ -16,7 +16,7 @@ struct PhotoUploadDescriptionView: View {
 
     var body: some View {
         VStack {
-            // ✅ Display Selected Photo
+            // Display Selected Photo
             Image(uiImage: photo.image)
                 .resizable()
                 .scaledToFit()
