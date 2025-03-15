@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PhotoUploadDescriptionView: View {
+    private let tabTitle = "Post Photo"
     let photo: PhotoItem
     @State private var caption: String = ""
     @State private var hashtags: String = ""
@@ -54,7 +55,15 @@ struct PhotoUploadDescriptionView: View {
             }
             Spacer()
         }
-        .navigationTitle("New Post")
+        .navigationTitle(tabTitle)
+        .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text(tabTitle)
+                        .font(.headline)
+                        .bold()
+                }
+            }
+        .toolbarTitleDisplayMode(.inline)
     }
 
     private func postPhoto() {

@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol PhotoUploadRepository {
+protocol PhotoRepository {
     func uploadPhoto(_ photo: PhotoItem) async -> Result<Bool, Error>
-    func getUploadedPhotos() async -> Result<[PhotoItem], Error>
+    func getPhotos() async -> Result<[PhotoItem], Error>
 }
 
-class MockPhotoUploadRepository: PhotoUploadRepository, ObservableObject {
+class MockPhotoUploadRepository: PhotoRepository, ObservableObject {
     @Published private var uploadedPhotos: [PhotoItem] = []
 
     func uploadPhoto(_ photo: PhotoItem) async -> Result<Bool, Error> {
@@ -25,7 +25,7 @@ class MockPhotoUploadRepository: PhotoUploadRepository, ObservableObject {
         return Result.success(true) // Mimics successful upload
     }
 
-    func getUploadedPhotos() async -> Result<[PhotoItem], Error> {
+    func getPhotos() async -> Result<[PhotoItem], Error> {
         try? await Task.sleep(nanoseconds: 1_000_000_000) // Simulates a 1-second delay
         return Result.success(uploadedPhotos)
     }

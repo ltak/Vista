@@ -9,6 +9,7 @@ import SwiftUI
 import Photos
 
 struct PhotoUploadView: View {
+    private let tabTitle = "Photo Select"
     @StateObject private var viewModel = PhotoGalleryViewModel()
     @State private var navigateToPostScreen = false
     
@@ -65,7 +66,15 @@ struct PhotoUploadView: View {
                 }
                 .disabled(viewModel.selectedPhoto == nil)
             }
-            .navigationTitle("Select Photo")
+            .navigationTitle(tabTitle)
+            .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        Text(tabTitle)
+                            .font(.headline)
+                            .bold()
+                    }
+                }
+            .toolbarTitleDisplayMode(.inline)
             .navigationDestination(for: PhotoItem.self) { photo in
                 PhotoUploadDescriptionView(photo: photo)
             }
