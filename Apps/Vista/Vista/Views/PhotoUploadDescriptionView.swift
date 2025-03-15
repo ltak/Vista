@@ -23,13 +23,25 @@ struct PhotoUploadDescriptionView: View {
                 .frame(height: 250)
                 .cornerRadius(10)
                 .padding()
+            
+            // Multi-line Caption Input Field
+            TextEditor(text: $caption)
+                .frame(height: 100) // ✅ Fixed height for multiple lines
+                .padding(8)
+                .background(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
+                .padding(.horizontal)
+                .overlay(
+                    VStack {
+                        if caption.isEmpty {
+                            Text("Write a caption... Add hashtags (e.g. #travel #sunset)")
+                                .foregroundColor(.gray)
+                                .padding()
+                        }
+                    },
+                    alignment: .top
+                )
 
-            // ✅ Caption Input Field
-            TextField("Write a caption... Add hashtags (e.g. #travel #sunset)", text: $caption)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-
-            // ✅ Post Button
+            // Post Button
             Button(action: postPhoto) {
                 Text("Post")
                     .font(.headline)
@@ -40,21 +52,6 @@ struct PhotoUploadDescriptionView: View {
                     .cornerRadius(10)
                     .padding()
             }
-
-            // ✅ Cancel Button
-            Button(action: {
-                dismiss()
-            }) {
-                Text("Cancel")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.red)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                    .padding()
-            }
-
             Spacer()
         }
         .navigationTitle("New Post")
