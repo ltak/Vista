@@ -16,10 +16,10 @@ struct PhotoGridItem: View {
         Image(uiImage: photo.image)
             .resizable()
             .scaledToFill()
-            .frame(width: 100, height: 100)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .frame(width: 100, height: 75)
+            .clipShape(Rectangle())
             .overlay(
-                RoundedRectangle(cornerRadius: 10)
+                Rectangle()
                     .stroke(isSelected ? Color.blue : Color.clear, lineWidth: 3)
             )
             .onTapGesture {

@@ -8,7 +8,11 @@
 import UIKit
 import Photos
 
-struct PhotoItem {
+struct PhotoItem: Equatable {
     let image: UIImage
     let asset: PHAsset
+    
+    static func == (lhs: PhotoItem, rhs: PhotoItem) -> Bool {
+        return lhs.asset.localIdentifier == rhs.asset.localIdentifier
+    }
 }
