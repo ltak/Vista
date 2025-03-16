@@ -11,8 +11,8 @@ let container = Container()
 
 // Function to register all dependencies
 func setupDependencies() {
-    container.register(ImageRepository.self) { _ in PhotoLibraryRepository() }
-    container.register(MockPhotoRepository.self) { _ in MockPhotoRepository()}
+    container.register(ImageRepository.self) { _ in ImageLibraryRepository() }
+    container.register(PhotoRepository.self) { _ in MockPhotoRepository()}
 }
 
 @propertyWrapper

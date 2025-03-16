@@ -10,14 +10,13 @@ import SwiftUI
 struct PhotoUploadDescriptionView: View {
     
     let tabTitle = "Photo Upload"
-    @State var photo: PhotoItem? = nil
-    @State var caption: String = ""
+    @StateObject var viewModel: PostViewModel
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack {
             // Display Selected Photo
-            Image(uiImage: photo?.image ?? UIImage())
+            Image(uiImage: viewModel.selectedPhoto?.image ?? UIImage())
                 .resizable()
                 .scaledToFit()
                 .frame(height: 250)
@@ -25,14 +24,14 @@ struct PhotoUploadDescriptionView: View {
                 .padding()
             
             // Multi-line Caption Input Field
-            TextEditor(text: $caption)
-                .frame(height: 100) // ✅ Fixed height for multiple lines
+            TextEditor(text: $viewModel.caption)
+                .frame(height: 100) // Fixed height for multiple lines
                 .padding(8)
                 .background(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
                 .padding(.horizontal)
                 .overlay(
                     VStack {
-                        if caption.isEmpty {
+                        if viewModel.caption.isEmpty {
                             Text("Write a caption... Add hashtags (e.g. #travel #sunset)")
                                 .foregroundColor(.gray)
                                 .padding()
@@ -66,7 +65,7 @@ struct PhotoUploadDescriptionView: View {
     }
     
     private func postPhoto() {
-        print("Photo posted with caption: \(caption)")
+        print("Photo posted with caption: \(viewModel.caption)")
         dismiss()
     }
 }

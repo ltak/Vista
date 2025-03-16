@@ -15,7 +15,8 @@ protocol ImageRepository {
     func fetchImage(for asset: PHAsset) async -> UIImage?
 }
 
-class PhotoLibraryRepository: ImageRepository {
+class ImageLibraryRepository: ImageRepository {
+
     private let imageManager = PHCachingImageManager()
     private let cache = NSCache<NSString, UIImage>()
 
