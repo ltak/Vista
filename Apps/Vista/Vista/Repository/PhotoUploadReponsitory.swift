@@ -12,7 +12,7 @@ protocol PhotoRepository {
     func getPhotos() async -> Result<[PhotoItem], Error>
 }
 
-class MockPhotoUploadRepository: PhotoRepository, ObservableObject {
+class MockPhotoRepository: PhotoRepository, ObservableObject {
     @Published private var uploadedPhotos: [PhotoItem] = []
 
     func uploadPhoto(_ photo: PhotoItem) async -> Result<Bool, Error> {
